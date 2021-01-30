@@ -2,3 +2,20 @@
   padding-top: 30px;
   padding-bottom: 60px;
 }
+
+.task-list__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 5px;
+}
+
+.task-list__footer--button {
+  color: #f00;
+  text-decoration: none;
+  background: transparent;
+  border-radius: 10px;
+}
+
+.task-list__footer--button:hover {
+  background: #4d2828;
+}

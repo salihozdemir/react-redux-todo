@@ -1,15 +1,23 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchTasks } from '../../redux'
+import { fetchTasks, deleteTasks } from '../../redux'
 
 import TaskItem from '../task-item'
+import Button from '../button'
 
 import './task-list.css'
 
-const TaskList = ({ taskData, fetchTasks }) => {
+const TaskList = ({ taskData, fetchTasks, deleteTasks }) => {
   useEffect(() => {
     fetchTasks()
   }, [fetchTasks])
+
+  const handleClearTasks = () => {
+    const res = window.confirm('Are you sure delete all todos?')
+    if (res) {
+      deleteTasks()
+    }
+  }
 
   return (
     <div className="task-list">
@@ -28,6 +36,14 @@ const TaskList = ({ taskData, fetchTasks }) => {
           />
         ))
       )}
+      <div className="task-list__footer">
+        <Button
+          className="task-list__footer--button"
+          onClick={handleClearTasks}
+        >
+          Clear All Tasks
+        </Button>
+      </div>
     </div>
   )
 }
@@ -40,7 +56,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTasks: () => dispatch(fetchTasks())
+    fetchTasks: () => dispatch(fetchTasks()),
+    deleteTasks: () => dispatch(deleteTasks())
   }
 }
 

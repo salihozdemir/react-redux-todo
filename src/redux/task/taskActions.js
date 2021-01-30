@@ -150,10 +150,9 @@ export const deleteTasksRequest = () => {
   }
 }
 
-export const deleteTasksSuccess = (task) => {
+export const deleteTasksSuccess = () => {
   return {
-    type: DELETE_TASKS_SUCCESS,
-    payload: task
+    type: DELETE_TASKS_SUCCESS
   }
 }
 
@@ -164,14 +163,13 @@ export const deleteTasksFailure = (error) => {
   }
 }
 
-export const deletesTask = (taskUrl) => {
+export const deleteTasks = () => {
   return function (dispatch) {
     dispatch(deleteTasksRequest())
     axios
-      .delete(taskUrl)
-      .then((response) => {
-        const tasks = response.data
-        dispatch(deleteTasksSuccess(tasks))
+      .delete('http://todo-backend-express-csp.herokuapp.com')
+      .then(() => {
+        dispatch(deleteTasksSuccess())
       })
       .catch((error) => {
         dispatch(deleteTasksFailure(error.message))

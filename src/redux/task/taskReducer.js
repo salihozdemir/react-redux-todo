@@ -35,13 +35,15 @@ const reducer = (state = initialState, action) => {
       }
     case FETCH_TASKS_FAILURE:
       return {
+        ...state,
         loading: false,
         error: action.error
       }
     case CREATE_TASK_SUCCESS:
       return {
         ...state,
-        tasks: [...state.tasks, action.payload]
+        tasks: [...state.tasks, action.payload],
+        error: ''
       }
     case CREATE_TASK_FAILURE:
       return {
@@ -57,7 +59,8 @@ const reducer = (state = initialState, action) => {
 
       return {
         ...state,
-        tasks: newArray
+        tasks: newArray,
+        error: ''
       }
     case UPDATE_TASK_FAILURE:
       return {
@@ -67,11 +70,29 @@ const reducer = (state = initialState, action) => {
     case DELETE_TASK_SUCCESS:
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.url !== action.payload.url)
+        tasks: state.tasks.filter((task) => task.url !== action.payload.url),
+        error: ''
       }
     case DELETE_TASK_FAILURE:
       return {
         ...state,
+        error: action.error
+      }
+    case DELETE_TASKS_REQUEST:
+      return {
+        ...state,
+        loading: false
+      }
+    case DELETE_TASKS_SUCCESS:
+      return {
+        loading: false,
+        tasks: [],
+        error: ''
+      }
+    case DELETE_TASKS_FAILURE:
+      return {
+        ...state,
+        loading: false,
         error: action.error
       }
     default:
