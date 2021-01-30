@@ -6,7 +6,6 @@ import {
   CREATE_TASK_FAILURE,
   UPDATE_TASK_SUCCESS,
   UPDATE_TASK_FAILURE,
-  DELETE_TASK_REQUEST,
   DELETE_TASK_SUCCESS,
   DELETE_TASK_FAILURE,
   DELETE_TASKS_REQUEST,
@@ -61,6 +60,16 @@ const reducer = (state = initialState, action) => {
         tasks: newArray
       }
     case UPDATE_TASK_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      }
+    case DELETE_TASK_SUCCESS:
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.url !== action.payload.url)
+      }
+    case DELETE_TASK_FAILURE:
       return {
         ...state,
         error: action.error

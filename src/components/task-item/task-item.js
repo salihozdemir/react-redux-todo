@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import cx from 'classnames'
 
-import { updateTask } from '../../redux'
+import { deleteTask, updateTask } from '../../redux'
 
 import Button from '../button'
 import { TiTick, TiDeleteOutline } from 'react-icons/ti'
@@ -11,7 +11,14 @@ import { BsTrash } from 'react-icons/bs'
 
 import './task-item.css'
 
-const TaskItem = ({ title, order, completed, taskUrl, updateTask }) => {
+const TaskItem = ({
+  title,
+  order,
+  completed,
+  taskUrl,
+  updateTask,
+  deleteTask
+}) => {
   const [isEditing, setEditing] = useState(false)
 
   const handleMark = () => {
@@ -82,7 +89,10 @@ const TaskItem = ({ title, order, completed, taskUrl, updateTask }) => {
             >
               <AiOutlineEdit />
             </Button>
-            <Button className="btn--icon btn--delete">
+            <Button
+              className="btn--icon btn--delete"
+              onClick={() => deleteTask(taskUrl)}
+            >
               <BsTrash />
             </Button>
           </>
@@ -94,7 +104,8 @@ const TaskItem = ({ title, order, completed, taskUrl, updateTask }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateTask: (taskUrl, value) => dispatch(updateTask(taskUrl, value))
+    updateTask: (taskUrl, value) => dispatch(updateTask(taskUrl, value)),
+    deleteTask: (taskUrl) => dispatch(deleteTask(taskUrl))
   }
 }
 

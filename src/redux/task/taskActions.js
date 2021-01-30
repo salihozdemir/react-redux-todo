@@ -8,7 +8,6 @@ import {
   CREATE_TASK_FAILURE,
   UPDATE_TASK_SUCCESS,
   UPDATE_TASK_FAILURE,
-  DELETE_TASK_REQUEST,
   DELETE_TASK_SUCCESS,
   DELETE_TASK_FAILURE,
   DELETE_TASKS_REQUEST,
@@ -115,12 +114,6 @@ export const updateTask = (taskUrl, value) => {
 //#endregion
 
 //#region Delete
-export const deleteTaskRequest = () => {
-  return {
-    type: DELETE_TASK_REQUEST
-  }
-}
-
 export const deleteTaskSuccess = (task) => {
   return {
     type: DELETE_TASK_SUCCESS,
@@ -137,7 +130,6 @@ export const deleteTaskFailure = (error) => {
 
 export const deleteTask = (taskUrl) => {
   return function (dispatch) {
-    dispatch(deleteTaskRequest())
     axios
       .delete(taskUrl)
       .then((response) => {
