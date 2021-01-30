@@ -43,6 +43,11 @@
   color: #85bf6b;
 }
 
+.active:hover {
+  color: #81ff49;
+  transform: scale(1.05);
+}
+
 .task-item--completed {
   color: #666;
   text-decoration: line-through;

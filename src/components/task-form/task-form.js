@@ -23,6 +23,7 @@ const TaskForm = ({ createTask }) => {
         type="text"
         placeholder="What needs to be done?"
         autoComplete="off"
+        maxLength="64"
         autoFocus
         value={title}
         onChange={(e) => setTitle(e.target.value)}
