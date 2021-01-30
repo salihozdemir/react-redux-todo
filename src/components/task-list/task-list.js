@@ -36,14 +36,16 @@ const TaskList = ({ taskData, fetchTasks, deleteTasks }) => {
           />
         ))
       )}
-      <div className="task-list__footer">
-        <Button
-          className="task-list__footer--button"
-          onClick={handleClearTasks}
-        >
-          Clear All Tasks
-        </Button>
-      </div>
+      {taskData?.tasks.length > 0 && (
+        <div className="task-list__footer">
+          <Button
+            className="task-list__footer--button"
+            onClick={handleClearTasks}
+          >
+            Clear All Tasks
+          </Button>
+        </div>
+      )}
     </div>
   )
 }

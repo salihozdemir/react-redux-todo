@@ -51,4 +51,5 @@
 .task-item--completed {
   color: #666;
   text-decoration: line-through;
+  text-decoration-color: #85bf6b;
 }

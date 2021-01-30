@@ -1,6 +1,5 @@
 .task-form__input {
   outline: none;
-  border: 0;
   border: 3px outset #fff;
   border-radius: 0;
   padding: 0 0 5px 10px;
@@ -14,4 +13,8 @@
 
 .task-form__input ::placeholder {
   color: #999;
+}
+
+.task-form__input:focus {
+  border-style: inset;
 }
