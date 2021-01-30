@@ -1,0 +1,10 @@
+header {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+header .header__title {
+  color: #eee;
+}

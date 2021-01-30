@@ -1,0 +1,36 @@
+.btn {
+  outline: none;
+  border: 0;
+  padding: 10px;
+  overflow: hidden;
+  background: transparent;
+  transition: 0.1s ease-in;
+}
+
+.btn:hover {
+  cursor: pointer;
+  color: #fff;
+  background: #4d4d4d;
+}
+
+.btn--icon {
+  border-radius: 99px;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  background: #373737;
+  font-size: 24px;
+  color: #eee;
+}
+
+.btn--icon:hover {
+  transform: scale(1.05);
+}
+
+.btn--edit {
+  color: #9ad9b9;
+}
+
+.btn--delete {
+  color: #f86868;
+}
