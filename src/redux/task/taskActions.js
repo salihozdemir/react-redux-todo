@@ -41,7 +41,7 @@ export const fetchTasks = () => {
   return function (dispatch) {
     dispatch(fetchTasksRequest())
     axios
-      .get('http://todo-backend-express-csp.herokuapp.com')
+      .get('https://todo-backend-express-csp.herokuapp.com')
       .then((response) => {
         const tasks = response.data
         dispatch(fetchTasksSuccess(tasks))
@@ -71,7 +71,7 @@ export const createTaskFailure = (error) => {
 export const createTask = (value) => {
   return function (dispatch) {
     axios
-      .post('http://todo-backend-express-csp.herokuapp.com', value)
+      .post('https://todo-backend-express-csp.herokuapp.com', value)
       .then((response) => {
         const task = response.data
         dispatch(createTaskSuccess(task))
@@ -101,7 +101,7 @@ export const updateTaskFailure = (error) => {
 export const updateTask = (taskUrl, value) => {
   return function (dispatch) {
     axios
-      .patch(taskUrl, value)
+      .patch('https' + taskUrl.slice(4), value)
       .then((response) => {
         const task = response.data
         dispatch(updateTaskSuccess(task))
@@ -131,7 +131,7 @@ export const deleteTaskFailure = (error) => {
 export const deleteTask = (taskUrl) => {
   return function (dispatch) {
     axios
-      .delete(taskUrl)
+      .delete('https' + taskUrl.slice(4))
       .then((response) => {
         const task = response.data
         dispatch(deleteTaskSuccess(task))
@@ -167,7 +167,7 @@ export const deleteTasks = () => {
   return function (dispatch) {
     dispatch(deleteTasksRequest())
     axios
-      .delete('http://todo-backend-express-csp.herokuapp.com')
+      .delete('https://todo-backend-express-csp.herokuapp.com')
       .then(() => {
         dispatch(deleteTasksSuccess())
       })
