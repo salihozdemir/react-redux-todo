@@ -25,8 +25,18 @@ const TaskList = ({ taskData, fetchTasks, deleteTasks }) => {
         <h2>Loading</h2>
       ) : taskData.error ? (
         taskData.error
+      ) : taskData?.filteredTasks?.length > 0 ? (
+        taskData.filteredTasks.map((task, index) => (
+          <TaskItem
+            key={index}
+            title={task.title}
+            order={task.order}
+            completed={task.completed}
+            taskUrl={task.url}
+          />
+        ))
       ) : (
-        taskData?.tasks?.map((task, index) => (
+        taskData.tasks.map((task, index) => (
           <TaskItem
             key={index}
             title={task.title}
@@ -36,7 +46,8 @@ const TaskList = ({ taskData, fetchTasks, deleteTasks }) => {
           />
         ))
       )}
-      {taskData?.tasks.length > 0 && (
+
+      {taskData?.tasks?.length > 0 && (
         <div className="task-list__footer">
           <Button
             className="task-list__footer--button"

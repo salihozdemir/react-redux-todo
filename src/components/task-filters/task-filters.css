@@ -20,6 +20,11 @@
   font-weight: 300;
 }
 
+.active-filter {
+  color: #fff !important;
+  background: #4d4d4d !important;
+}
+
 .task-filters li button {
   color: #999;
   text-decoration: none;

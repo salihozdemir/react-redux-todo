@@ -95,6 +95,13 @@ const reducer = (state = initialState, action) => {
         loading: false,
         error: action.error
       }
+    case FILTER_TASKS:
+      return {
+        ...state,
+        filteredTasks: state.tasks.filter(
+          (task) => task.completed === action.payload
+        )
+      }
     default:
       return state
   }
