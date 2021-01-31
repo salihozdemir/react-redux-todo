@@ -19,32 +19,37 @@ const TaskList = ({ taskData, fetchTasks, deleteTasks }) => {
     }
   }
 
+  const swichExpression = () => {
+    switch (taskData.filterType) {
+      case 'View All':
+        return () => Boolean
+      case 'Active':
+        return (task) => task.completed === false
+      case 'Completed':
+        return (task) => task.completed === true
+      default:
+        return () => Boolean
+    }
+  }
+
   return (
     <div className="task-list">
       {taskData.loading ? (
         <h2>Loading</h2>
       ) : taskData.error ? (
         taskData.error
-      ) : taskData?.filteredTasks?.length > 0 ? (
-        taskData.filteredTasks.map((task, index) => (
-          <TaskItem
-            key={index}
-            title={task.title}
-            order={task.order}
-            completed={task.completed}
-            taskUrl={task.url}
-          />
-        ))
       ) : (
-        taskData.tasks.map((task, index) => (
-          <TaskItem
-            key={index}
-            title={task.title}
-            order={task.order}
-            completed={task.completed}
-            taskUrl={task.url}
-          />
-        ))
+        taskData?.tasks
+          ?.filter(swichExpression())
+          .map((task, index) => (
+            <TaskItem
+              key={index}
+              title={task.title}
+              order={task.order}
+              completed={task.completed}
+              taskUrl={task.url}
+            />
+          ))
       )}
 
       {taskData?.tasks?.length > 0 && (

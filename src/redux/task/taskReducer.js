@@ -17,7 +17,8 @@ import {
 const initialState = {
   loading: false,
   tasks: [],
-  error: ''
+  error: '',
+  filterType: 'View All'
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,6 +30,7 @@ const reducer = (state = initialState, action) => {
       }
     case FETCH_TASKS_SUCCESS:
       return {
+        ...state,
         loading: false,
         tasks: action.payload,
         error: ''
@@ -85,6 +87,7 @@ const reducer = (state = initialState, action) => {
       }
     case DELETE_TASKS_SUCCESS:
       return {
+        ...state,
         loading: false,
         tasks: [],
         error: ''
@@ -98,9 +101,7 @@ const reducer = (state = initialState, action) => {
     case FILTER_TASKS:
       return {
         ...state,
-        filteredTasks: state.tasks.filter(
-          (task) => task.completed === action.payload
-        )
+        filterType: action.payload
       }
     default:
       return state
