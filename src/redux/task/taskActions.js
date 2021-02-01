@@ -41,7 +41,7 @@ export const fetchTasks = () => {
   return function (dispatch) {
     dispatch(fetchTasksRequest())
     axios
-      .get('https://todo-backend-express-csp.herokuapp.com')
+      .get('https://react-redux-todo-api.herokuapp.com/api')
       .then((response) => {
         const tasks = response.data
         dispatch(fetchTasksSuccess(tasks))
@@ -71,7 +71,7 @@ export const createTaskFailure = (error) => {
 export const createTask = (value) => {
   return function (dispatch) {
     axios
-      .post('https://todo-backend-express-csp.herokuapp.com', value)
+      .post('https://react-redux-todo-api.herokuapp.com/api', value)
       .then((response) => {
         const task = response.data
         dispatch(createTaskSuccess(task))
@@ -98,10 +98,10 @@ export const updateTaskFailure = (error) => {
   }
 }
 
-export const updateTask = (taskUrl, value) => {
+export const updateTask = (id, value) => {
   return function (dispatch) {
     axios
-      .patch('https' + taskUrl.slice(4), value)
+      .patch('https://react-redux-todo-api.herokuapp.com/api/' + id, value)
       .then((response) => {
         const task = response.data
         dispatch(updateTaskSuccess(task))
@@ -128,10 +128,10 @@ export const deleteTaskFailure = (error) => {
   }
 }
 
-export const deleteTask = (taskUrl) => {
+export const deleteTask = (id) => {
   return function (dispatch) {
     axios
-      .delete('https' + taskUrl.slice(4))
+      .delete('https://react-redux-todo-api.herokuapp.com/api/' + id)
       .then((response) => {
         const task = response.data
         dispatch(deleteTaskSuccess(task))
@@ -167,7 +167,7 @@ export const deleteTasks = () => {
   return function (dispatch) {
     dispatch(deleteTasksRequest())
     axios
-      .delete('https://todo-backend-express-csp.herokuapp.com')
+      .delete('https://react-redux-todo-api.herokuapp.com/api')
       .then(() => {
         dispatch(deleteTasksSuccess())
       })

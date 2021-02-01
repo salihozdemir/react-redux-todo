@@ -45,9 +45,8 @@ const TaskList = ({ taskData, fetchTasks, deleteTasks }) => {
             <TaskItem
               key={index}
               title={task.title}
-              order={task.order}
               completed={task.completed}
-              taskUrl={task.url}
+              id={task._id}
             />
           ))
       )}

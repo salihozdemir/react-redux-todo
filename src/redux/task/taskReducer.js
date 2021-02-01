@@ -54,7 +54,7 @@ const reducer = (state = initialState, action) => {
       }
     case UPDATE_TASK_SUCCESS:
       const index = state.tasks.findIndex(
-        (task) => task.url === action.payload.url
+        (task) => task._id === action.payload._id
       )
       const newArray = [...state.tasks]
       newArray[index] = action.payload
@@ -72,7 +72,7 @@ const reducer = (state = initialState, action) => {
     case DELETE_TASK_SUCCESS:
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.url !== action.payload.url),
+        tasks: state.tasks.filter((task) => task._id !== action.payload._id),
         error: ''
       }
     case DELETE_TASK_FAILURE:

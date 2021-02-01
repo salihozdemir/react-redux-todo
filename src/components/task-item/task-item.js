@@ -11,18 +11,11 @@ import { BsTrash } from 'react-icons/bs'
 
 import './task-item.css'
 
-const TaskItem = ({
-  title,
-  order,
-  completed,
-  taskUrl,
-  updateTask,
-  deleteTask
-}) => {
+const TaskItem = ({ id, title, completed, updateTask, deleteTask }) => {
   const [isEditing, setEditing] = useState(false)
 
   const handleMark = () => {
-    updateTask(taskUrl, { completed: !completed })
+    updateTask(id, { completed: !completed })
   }
 
   const handleKeyUp = (event) => {
@@ -37,7 +30,7 @@ const TaskItem = ({
     if (isEditing) {
       const newTitle = event.target.value.trim()
       if (title.length && title !== newTitle) {
-        updateTask(taskUrl, { title: newTitle })
+        updateTask(id, { title: newTitle })
       }
       setEditing(false)
     }
@@ -91,7 +84,7 @@ const TaskItem = ({
             </Button>
             <Button
               className="btn--icon btn--delete"
-              onClick={() => deleteTask(taskUrl)}
+              onClick={() => deleteTask(id)}
             >
               <BsTrash />
             </Button>
@@ -104,8 +97,8 @@ const TaskItem = ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateTask: (taskUrl, value) => dispatch(updateTask(taskUrl, value)),
-    deleteTask: (taskUrl) => dispatch(deleteTask(taskUrl))
+    updateTask: (id, value) => dispatch(updateTask(id, value)),
+    deleteTask: (id) => dispatch(deleteTask(id))
   }
 }
 
